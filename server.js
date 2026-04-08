@@ -16,8 +16,8 @@ const AE_OWNERS = {
   '87073113': 'Manuel',
 };
 
-const WAR_START = new Date('2026-04-08T09:30:00+02:00').getTime();
-const WAR_END   = new Date('2026-04-08T13:30:00+02:00').getTime();
+const WAR_START = new Date('2026-04-10T09:30:00+02:00').getTime();
+const WAR_END   = new Date('2026-04-10T13:30:00+02:00').getTime();
 const POINTS    = { attempt: 1, connected: 5, meeting: 25 };
 
 // ─── State & SSE ─────────────────────────────────────────────────────────────
