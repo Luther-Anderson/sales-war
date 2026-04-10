@@ -167,6 +167,14 @@
   .rank-2 .ae-avatar { border-color: var(--silver); }
   .rank-3 .ae-avatar { border-color: var(--bronze); }
   .ae-card:hover { transform: translateY(-1px); }
+  .ae-card.absent { opacity: 0.35; filter: grayscale(1); pointer-events: none; }
+  .absent-note {
+    grid-column: 3 / 4;
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 4px;
+  }
   .ae-card.rank-1 { border-color: var(--gold);   background: linear-gradient(135deg, rgba(255,215,0,0.08), var(--card)); }
   .ae-card.rank-2 { border-color: var(--silver); background: linear-gradient(135deg, rgba(192,192,192,0.07), var(--card)); }
   .ae-card.rank-3 { border-color: var(--bronze); background: linear-gradient(135deg, rgba(205,127,50,0.07), var(--card)); }
@@ -420,13 +428,16 @@
       const pct = Math.round((ae.score / maxScore) * 100);
 
       const photo = PHOTOS[ae.id] || '';
+      const absentClass = ae.absent ? 'absent' : '';
+      const absentNote = ae.absent ? `<div class="absent-note">🤒 ${ae.note || 'On sick leave today'}</div>` : '';
 
       return `
-        <div class="ae-card ${rankClass}">
+        <div class="ae-card ${rankClass} ${absentClass}">
           <div class="rank">${rankEmoji}</div>
           ${photo ? `<img class="ae-avatar" src="/${photo}" alt="${ae.name}">` : '<div class="ae-avatar"></div>'}
           <div class="ae-info">
             <div class="ae-name">${ae.name}</div>
+            ${absentNote}
             <div class="ae-stats">
               <div class="stat-pill attempt">
                 📞 <span class="count">${ae.attempts}</span> attempts
